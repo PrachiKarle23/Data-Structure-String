@@ -1,0 +1,26 @@
+class Solution
+{
+    public:
+    char getMaxOccuringChar(string str)
+    {
+        sort(str.begin(),str.end());
+        map<char,int>ans;
+        int n=str.length();
+        for(int i=n-1;i>=0;i--){
+            ans[str[i]]++;
+        }
+        int maxi=INT_MIN;
+        for(auto i:ans){
+            maxi=max(maxi,i.second);
+        }
+        char res;
+        for(auto i:ans){
+            if(i.second==maxi){
+                res=i.first;
+                break;
+            }
+        }
+        return res;
+    }
+
+};
