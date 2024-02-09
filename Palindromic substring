@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int solve(string s,int i,int j){
+        int cnt=0;
+        while(i>=0 && j<s.length() && s[i]==s[j]){
+            cnt++;
+            i--;
+            j++;
+        }
+        return cnt;
+    }
+    int countSubstrings(string s) {
+        int n=s.length();
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            int oddcnt=solve(s,i,i);
+            cnt=cnt+oddcnt;
+            int evencnt=solve(s,i,i+1);
+            cnt=cnt+evencnt;
+        }
+        return cnt;
+    }
+};
