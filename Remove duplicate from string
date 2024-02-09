@@ -1,0 +1,24 @@
+string removeDuplicates(string str, int n)
+{
+ vector<char>a;
+ a.push_back(str[0]);
+ int i=1;
+ while(i<n){
+  bool flag=true;
+  for(int j=0;j<a.size();j++){
+      if(str[i]==a[j]){
+        flag=false;
+        break;
+      }
+  }
+  if(flag==true){
+    a.push_back(str[i]);
+  }
+  i++;
+ }
+ string ans="";
+ for(int i=0;i<a.size();i++){
+   ans+=a[i];
+ }
+ return ans;
+}
