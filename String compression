@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        unordered_map<char,int>m;
+        char curr=chars[0];
+        string ans="";
+        ans+=curr;
+        for(auto ch:chars){
+            if(curr==ch){
+                m[curr]++;
+            }
+            else{
+                if(m[curr]!=1){
+                    ans+=to_string(m[curr]);
+                }
+                curr=ch;
+                ans+=ch;
+                m.clear();
+                m[curr]++;
+            }
+        }
+        if(m[curr]!=1){
+            ans+=to_string(m[curr]);
+        }
+
+    chars.clear();
+    for(int i=0;i<ans.length();i++){
+        chars.push_back(ans[i]);
+    }
+    return ans.length();
+    }
+};
