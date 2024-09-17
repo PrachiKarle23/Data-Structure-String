@@ -14,3 +14,40 @@ public:
         return maxLen;
     }
 };
+
+
+class Solution {
+public:
+    void solve(vector<string>& ans,int i,string s){
+        stack<string>que;
+        for(int j=i;j<s.length();j++){
+            if(que.empty()){
+              string str(1,s[j]);
+              que.push(str);
+            }
+            else{
+                if(que.top().find(s[j])==-1)
+                {
+                    que.top()=que.top()+s[j];
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        ans.push_back(que.top());
+    }
+    int lengthOfLongestSubstring(string s) {
+       vector<string>ans;
+       for(int i=0;i<s.length();i++){
+          solve(ans,i,s);
+       }
+       int maxi=0;
+       for(int i=0;i<ans.size();i++){
+          if(maxi<ans[i].length()){
+             maxi=ans[i].length();
+          }
+       }
+       return maxi;
+    }
+};
